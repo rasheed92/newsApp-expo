@@ -1,10 +1,17 @@
 import React from 'react'
-import {View,Text,TextInput} from 'react-native'
+import {View,Text,TextInput,StyleSheet,Image} from 'react-native'
 
 export default class SearchBar extends React.Component{
     constructor(props) {
         super(props);
-        this.state = { text: 'Useless Placeholder' };
+        this.state = { 
+            value: ""
+         };
+      }
+      search(text="iraq"){
+          this.setState({value:text})
+          this.props.searchFun(text)
+          console.log(text)
       }
     render(){
         return(
@@ -12,12 +19,17 @@ export default class SearchBar extends React.Component{
             // <Text>Hello wordl</Text>
             <View style={{flex:0.1,backgroundColor:"green"}}>
                <TextInput
-        style={{height: 40, borderColor: 'gray', borderWidth: 1}}
-        onChangeText={(text) => this.setState({text})}
+        style={{height: 40, borderColor: 'white', borderWidth: 1}}
+        onChangeText={this.search.bind(this)}
        
-        value={this.state.text}
-      />
+        value={this.state.value}
+    
+    
+        />
+
+         
             </View>
         )
     }
 }
+
